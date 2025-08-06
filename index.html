@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Stomotologiya</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  
+</head>
+<body onload="navigateTo('patients')" class="bg-white dark:bg-gray-900 dark:text-white transition-colors duration-500">
+
+
+
+  <aside id="sidebar" class="sidebar group fixed top-0 left-0 h-screen w-64 max-w-[240px] transition-all duration-500 md:w-16 hover:md:w-60 dark:bg-gray-800 border-r-2 border-blue-300 dark:border-gray-700 flex flex-col items-start overflow-hidden z-40 bg-white dark:text-white">
+
+<button onclick="closeSidebar()" class="md:hidden absolute top-4 right-4 text-2xl text-white z-50">
+  ✖
+</button>
+
+<div class="flex items-center dark:bg-blue-500 gap-2 bg-blue-300 px-3 py-11 dark:border-b-0 border-b-2 border-blue-300 w-full">
+  <img src="https://via.placeholder.com/24" class="w-6 h-6" alt="Logo" />
+  <span class="text-white font-semibold text-sm whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+    MEDICAL CLINIC
+  </span>
+</div>
+
+<nav class="space-y-2 w-full text-sm font-medium p-4">
+  <div onclick="navigateTo('patients')" class="menu-item flex items-center gap-6 text-blue-800 dark:text-white  hover:bg-blue-300 dark:hover:bg-blue-300 p-1 rounded-md cursor-pointer transition">
+    <i class="text-2xl text-blue-500 fa-solid fa-user-tie"></i><span class="label">Be’morlar</span>
+  </div>
+  <div onclick="navigateTo('hr')" class="menu-item flex items-center gap-6 text-blue-800  dark:text-white   hover:bg-blue-300 dark:hover:bg-blue-300 p-1 rounded-md cursor-pointer transition">
+    <i class="text-xl text-blue-500 fa-solid fa-users"></i><span class="label">HR-bo'limi</span>
+  </div>
+  <div onclick="navigateTo('price')" class="menu-item flex items-center gap-6 text-blue-800 dark:text-white    hover:bg-blue-300 dark:hover:bg-blue-300 p-1 rounded-md cursor-pointer transition">
+    <i class="text-xl text-blue-500 fa-solid fa-sack-dollar"></i><span class="label">Narxlar</span>
+  </div>
+  <div onclick="navigateTo('sms')" class="menu-item flex items-center gap-6 text-blue-800 dark:text-white    hover:bg-blue-300 dark:hover:bg-blue-300 p-1 rounded-md cursor-pointer transition">
+    <i class="text-2xl text-blue-500 fa-solid fa-comment-dots"></i><span class="label">Sms-xabar</span>
+  </div>
+  <div onclick="navigateTo('users')" class="menu-item flex items-center gap-6 text-blue-800 dark:text-white   hover:bg-blue-300 dark:hover:bg-blue-300 p-1 rounded-md cursor-pointer transition">
+    <i class="text-2xl text-blue-500 fa-solid fa-user"></i><span class="label">Users</span>
+  </div>
+  <div onclick="navigateTo('reports')" class="menu-item flex items-center gap-6 text-blue-800 dark:text-white   hover:bg-blue-300 dark:hover:bg-blue-300 p-1 rounded-md cursor-pointer transition">
+    <i class="text-xl text-blue-500 fa-solid fa-square-root-variable"></i><span class="label">Hisobot</span>
+  </div>
+  <div onclick="navigateTo('calendar')" class="menu-item flex items-center gap-6 text-blue-800 dark:text-white    hover:bg-blue-300 dark:hover:bg-blue-300 p-1 rounded-md cursor-pointer transition">
+    <i class="text-2xl text-blue-500 fa-solid fa-calendar-days"></i><span class="label">Kalendar</span>
+  </div>
+  <div onclick="navigateTo('debtors')" class="menu-item flex items-center gap-6 text-blue-800 dark:text-white  hover:bg-blue-300 dark:hover:bg-blue-300 p-1 rounded-md cursor-pointer transition">
+    <i class="text-xl text-blue-500 fa-solid fa-user-minus"></i><span class="label">Qarzdorlar</span>
+  </div>
+</nav>
+</aside>
+
+  <!-- M -->
+  <main class="main-container   md:ml-16 ml-0">
+<header class="main-header md:mx-4 mx-0 md:pt-0 pt-2 md:my-2 my-0 md:rounded-lg border-blue-500 md:border-2 border-b-2 fixed top-0 right-0 z-30 bg-white dark:bg-gray-900 transition-all duration-500 ease left-0 md:left-16">
+  <div class="flex     p-2 md:rounded-lg items-center justify-between">
+    <button onclick="openSidebar()" class="md:hidden px-2 py-[5px] text-blue-800 dark:text-white hover:opacity-90 transition">
+      <i class="fas fa-bars"></i>
+    </button>
+        <h1 id="sectionTitle" class="text-xl text-blue-800 dark:text-white font-semibold">Be’mor profili</h1>
+        <div class="flex items-center gap-4">
+          <select class="border-2 border-blue-500 text-sm font-bold outline-none bg-transparent p-1 rounded-lg">
+            <option class="bg-black text-white" value="UZB">UZB</option>
+            <option class="bg-black text-white" value="RUS">RUS</option>
+            <option class="bg-black text-white" value="ENG">ENG</option>
+          </select>
+          <i class="text-blue-500 dark:text-white fa-solid fa-bell"></i>
+          <button onclick="toggleDark()" id="themeToggle" class="text-yellow-500 text-xl hover:scale-110 transition">
+            <i class="fas fa-sun"></i>
+          </button>
+          
+          <div class="flex items-center gap-2">
+            <img src="https://via.placeholder.com/32" class="rounded-full w-8 h-8" />
+            <div class="text-right sm:flex flex-col hidden">
+              <div class="text-sm font-semibold">Islom Jo‘rayev</div>
+              <div class="text-xs text-gray-500 dark:text-gray-300">bosh admin</div>
+            </div>
+          </div>
+        </div>
+      </div>
+     
+      
+    </header>
+
+    <!-- section1 -->
+      <section id="patients" class="md:mt-24 mt-16 md:mx-4 mx-1 section-box my-4 md:px-4 px-3 md:py-10 py-4 rounded-lg md:border-2 border-blue-500 relative">
+        <h2 class="md:text-2xl text-xl md:text-start text-center font-semibold md:mb-4 text-blue-800 dark:text-white">Be’morning Ma'lumotlari</h2>
+              
+              <form class="grid md:space-y-8 space-y-2 grid-cols-1 md:grid-cols-2 gap-4 z-10 relative md:mb-12 mb-8">
+                <input type="text" placeholder="First Name*" class="outline-none border-blue-500 border rounded-full mt-8 p-2 px-4 dark:bg-gray-800 dark:border-gray-600 dark:text-white" />
+                <input type="text" placeholder="Last Name*" class="outline-none border-blue-500 border rounded-full p-2 px-4 dark:bg-gray-800 dark:border-gray-600 dark:text-white" />
+                <input type="text" placeholder="Primary Doctor*" class="outline-none border-blue-500 border rounded-full p-2 px-4 dark:bg-gray-800 dark:border-gray-600 dark:text-white" />
+                <input type="text" placeholder="Gender*" class="outline-none border-blue-500 border rounded-full p-2 px-4 dark:bg-gray-800 dark:border-gray-600 dark:text-white" />
+                <input type="text" placeholder="Phone Number*" class="outline-none border-blue-500 border rounded-full p-2 px-4 dark:bg-gray-800 dark:border-gray-600 dark:text-white" />
+                <input type="text" placeholder="kun/oy/yil*" class="outline-none border-blue-500 border rounded-full p-2 px-4 dark:bg-gray-800 dark:border-gray-600 dark:text-white" />
+              </form>
+         
+              <div class="md:flex grid grid-cols-2 items-center gap-4 justify-end z-10 relative">
+                <button onclick="navigateTo('anketa')" class="bg-gradient-to-r from-blue-500 to-blue-800 text-white font-semibold px-6 py-[10px] rounded-full shadow-md hover:opacity-90 transition duration-300 dark:from-blue-600 dark:to-blue-900">
+                  Anketa
+                </button>
+                <button type="button" class="border-2 font-bold bg-white hover:bg-gray-100 border-blue-600 text-blue-700 px-6 py-2 rounded-full dark:bg-gray-800 dark:border-blue-400 dark:text-white dark:hover:bg-gray-700">
+                  O'zgartirish
+                </button>
+              </div>
+         
+              <div class="absolute md:flex hidden w-[200px] h-[200px] bg-gradient-to-br from-blue-200 to-blue-400 rounded-full top-4 right-4 -z-10 opacity-60 dark:from-blue-700 dark:to-blue-500"></div>
+              <div class="absolute md:flex hidden w-[160px] h-[160px] bg-gradient-to-tl from-blue-100 to-blue-300 rounded-full top-24 right-60 -z-10 opacity-60 dark:from-blue-600 dark:to-blue-400"></div>
+              <div class="absolute md:flex hidden w-[140px] h-[140px] bg-gradient-to-r from-blue-100 to-white rounded-full bottom-32 right-10 -z-10 opacity-50 dark:from-blue-700 dark:to-gray-900"></div>
+              <div class="absolute md:flex hidden w-[180px] h-[180px] bg-gradient-to-br from-blue-200 to-blue-500 rounded-full top-64 right-56 -z-10 opacity-60 dark:from-blue-800 dark:to-blue-600"></div>
+              <div class="absolute md:flex hidden w-[100px] h-[100px] bg-gradient-to-br from-blue-300 to-blue-600 rounded-full bottom-10 right-96 -z-10 opacity-50 dark:from-blue-900 dark:to-blue-700"></div>
+          
+              <div class="absolute md:flex hidden w-[60px] h-[60px] bg-gradient-to-tr from-blue-400 to-blue-800 rounded-full top-[15%] right-[20%] -z-10 opacity-40 dark:from-blue-700 dark:to-blue-900"></div>
+              <div class="absolute md:flex hidden w-[90px] h-[90px] bg-gradient-to-br from-blue-100 to-blue-400 rounded-full bottom-[10%] right-[3%] -z-10 opacity-40 dark:from-blue-700 dark:to-blue-500"></div>
+      </section>
+         
+         
+         
+        <!-- section2  -->
+      <section id="hr" class="mt-16 md:mx-4 mx-1 section-box my-4   md:py-10 py-4 section-box hidden space-y-2">
+        <div class="md:flex grid grid-cols-2 gap-2 md:p-0 p-2 justify-between items-center">
+          <input type="text" placeholder="Qidiruv" class="border-2 border-blue-500 rounded-lg pl-4 pr-10 py-2 outline-none focus:ring-blue-400 dark:bg-gray-800 dark:text-white">
+          <button class="bg-gradient-to-r from-blue-500 to-blue-800 dark:from-blue-600 dark:to-blue-900 text-white px-4 py-[10px] items-center justify-center rounded-lg flex items-center gap-2">
+            Bemor qo'shish
+          </button>
+        </div>
+        <div class="md:p-4 bg-blue-500 dark:bg-gray-800 md:rounded-lg shadow-lg w-full mx-auto">
+          
+          <div class="overflow-x-auto">
+             <table class="min-w-full bg-white dark:bg-gray-900 md:rounded-lg overflow-hidden">
+               <thead>
+                 <tr class="bg-blue-800 text-white text-sm text-center">
+                   <th class="py-3 px-4">Ism/Familiya</th>
+                   <th class="py-3 px-4">Passport ID</th>
+                   <th class="py-3 px-4">Tug‘ilgan sana</th>
+                   <th class="py-3 px-4">Jinsi</th>
+                   <th class="py-3 px-4">Mobil Raqami</th>
+                   <th class="py-3 px-4">Ko‘rik</th>
+                 </tr>
+               </thead>
+               <tbody class="text-center text-sm text-gray-700 dark:text-gray-300">
+                 <tr class="border-t border-gray-200 dark:border-gray-700">
+                   <td class="py-3 px-4"></td>
+                   <td class="py-3 px-4"></td>
+                   <td class="py-3 px-4"></td>
+                   <td class="py-3 px-4"></td>
+                   <td class="py-3 px-4"></td>
+                   <td class="py-3 px-4"></td>
+                 </tr>
+                 <tr class="border-t border-gray-200 dark:border-gray-700">
+                   <td class="py-3 px-4"></td>
+                   <td class="py-3 px-4"></td>
+                   <td class="py-3 px-4"></td>
+                   <td class="py-3 px-4"></td>
+                   <td class="py-3 px-4"></td>
+                   <td class="py-3 px-4"></td>
+                 </tr>
+                 <tr class="border-t border-gray-200 dark:border-gray-700">
+                   <td class="py-3 px-4"></td>
+                   <td class="py-3 px-4"></td>
+                   <td class="py-3 px-4"></td>
+                   <td class="py-3 px-4"></td>
+                   <td class="py-3 px-4"></td>
+                   <td class="py-3 px-4"></td>
+                 </tr>
+           
+                 <tr class="border-t border-gray-200 dark:border-gray-700">
+                   <td class="py-3 px-4"></td>
+                   <td class="py-3 px-4"></td>
+                   <td class="py-3 px-4"></td>
+                   <td class="py-3 px-4"></td>
+                   <td class="py-3 px-4"></td>
+                   <td class="py-3 px-4"></td>
+                 </tr>
+                 <tr class="border-t border-gray-200 dark:border-gray-700">
+                   <td class="py-3 px-4"></td>
+                   <td class="py-3 px-4"></td>
+                   <td class="py-3 px-4"></td>
+                   <td class="py-3 px-4"></td>
+                   <td class="py-3 px-4"></td>
+                   <td class="py-3 px-4"></td>
+                 </tr>
+                 <tr class="border-t border-gray-200 dark:border-gray-700">
+                   <td class="py-3 px-4"></td>
+                   <td class="py-3 px-4"></td>
+                   <td class="py-3 px-4"></td>
+                   <td class="py-3 px-4"></td>
+                   <td class="py-3 px-4"></td>
+                   <td class="py-3 px-4"></td>
+                 </tr>
+                 <tr class="border-t border-gray-200 dark:border-gray-700">
+                   <td class="py-3 px-4"></td>
+                   <td class="py-3 px-4"></td>
+                   <td class="py-3 px-4"></td>
+                   <td class="py-3 px-4"></td>
+                   <td class="py-3 px-4"></td>
+                   <td class="py-3 px-4"></td>
+                 </tr>
+                 <tr class="border-t border-gray-200 dark:border-gray-700">
+                   <td class="py-3 px-4"></td>
+                   <td class="py-3 px-4"></td>
+                   <td class="py-3 px-4"></td>
+                   <td class="py-3 px-4"></td>
+                   <td class="py-3 px-4"></td>
+                   <td class="py-3 px-4"></td>
+                 </tr>
+                 <tr class="border-t border-gray-200 dark:border-gray-700">
+                  <td class="py-3 px-4"></td>
+                  <td class="py-3 px-4"></td>
+                  <td class="py-3 px-4"></td>
+                  <td class="py-3 px-4"></td>
+                  <td class="py-3 px-4"></td>
+                  <td class="py-3 px-4"></td>
+                </tr>
+                <tr class="border-t border-gray-200 dark:border-gray-700">
+                  <td class="py-3 px-4"></td>
+                  <td class="py-3 px-4"></td>
+                  <td class="py-3 px-4"></td>
+                  <td class="py-3 px-4"></td>
+                  <td class="py-3 px-4"></td>
+                  <td class="py-3 px-4"></td>
+                </tr>
+                <tr class="border-t border-gray-200 dark:border-gray-700">
+                  <td class="py-3 px-4"></td>
+                  <td class="py-3 px-4"></td>
+                  <td class="py-3 px-4"></td>
+                  <td class="py-3 px-4"></td>
+                  <td class="py-3 px-4"></td>
+                  <td class="py-3 px-4"></td>
+                </tr>
+                <tr class="border-t border-gray-200 dark:border-gray-700">
+                  <td class="py-3 px-4"></td>
+                  <td class="py-3 px-4"></td>
+                  <td class="py-3 px-4"></td>
+                  <td class="py-3 px-4"></td>
+                  <td class="py-3 px-4"></td>
+                  <td class="py-3 px-4"></td>
+                </tr>
+                <tr class="border-t border-gray-200 dark:border-gray-700">
+                  <td class="py-3 px-4"></td>
+                  <td class="py-3 px-4"></td>
+                  <td class="py-3 px-4"></td>
+                  <td class="py-3 px-4"></td>
+                  <td class="py-3 px-4"></td>
+                  <td class="py-3 px-4"></td>
+                </tr>
+               </tbody>
+             </table>
+           </div>
+          </div>
+      </section>
+      <!-- section3 -->
+      <section id="price" class="mt-16 md:mx-4 mx-1 section-box my-4  md:py-10 py-4 section-box hidden pb-4">
+        <div class="flex md:flex-row gap-2 flex-col justify-between items-center">
+            <input type="text" placeholder="Qidiruv" class="outline-none border-2 md:w-[300px] w-full border-blue-500 rounded-lg pl-4 pr-10 py-2   focus:ring-blue-400 dark:bg-gray-800 dark:text-white">
+          <div class=" md:flex  grid grid-cols-2 space-x-2">
+            <button onclick="navigateTo('maxsus')" class="bg-gradient-to-r from-blue-500 to-blue-800 dark:from-blue-600 dark:to-blue-900 text-white px-4 py-2 rounded-lg flex items-center">
+              maxsus price ⭐
+            </button>
+            <button class="bg-gradient-to-r from-blue-500 to-blue-800 dark:from-blue-600 dark:to-blue-900 text-white px-4 py-2 rounded-lg f items-center">
+              Bemor qo'shish
+            </button>
+          </div>
+        </div>
+        <div class="w-full mx-auto mt-8 md:p-4 bg-blue-100 dark:bg-gray-800 md:rounded-lg shadow-md overflow-x-auto">
+          <div class="w-full">
+              <table class="w-full text-sm text-left border border-blue-500 dark:border-gray-700">
+                <thead>
+                  <tr class="bg-gradient-to-r from-blue-500 to-blue-800 dark:from-blue-600 dark:to-blue-900 text-white text-center">
+                    <th colspan="2" class="py-3 text-lg tracking-widest">MUOLАJA</th>
+                    <th class="py-3 text-lg tracking-widest">NARXI</th>
+                  </tr>
+                </thead>
+                <tbody class="text-gray-800 dark:text-gray-100">
+                  <tr class="border-t dark:border-gray-600">
+                    <td class="px-2 py-2 w-6"><input type="checkbox" checked class="accent-blue-600"></td>
+                    <td class="px-2 py-2">Umumiy qon tahlili</td>
+                    <td class="px-2 py-2 text-right">60 000 <span class="ml-2 text-blue-600 dark:text-blue-400 cursor-pointer">✎</span></td>
+                  </tr>
+                  <tr class="border-t dark:border-gray-600">
+                    <td class="px-2 py-2"><input type="checkbox" class="accent-blue-600"></td>
+                    <td class="px-2 py-2">Gormonal analizlar</td>
+                    <td class="px-2 py-2 text-right">70 000 <span class="ml-2 text-blue-600 dark:text-blue-400 cursor-pointer">✎</span></td>
+                  </tr>
+                  <tr class="border-t dark:border-gray-600">
+                    <td class="px-2 py-2"><input type="checkbox" class="accent-blue-600"></td>
+                    <td class="px-2 py-2">Spirometriya (nafas yo'llari tekshiruvi)</td>
+                    <td class="px-2 py-2 text-right">70 000 <span class="ml-2 text-blue-600 dark:text-blue-400 cursor-pointer">✎</span></td>
+                  </tr>
+                  <tr class="border-t dark:border-gray-600">
+                    <td class="px-2 py-2"><input type="checkbox" class="accent-blue-600"></td>
+                    <td class="px-2 py-2">Rengen</td>
+                    <td class="px-2 py-2 text-right">50 000 <span class="ml-2 text-blue-600 dark:text-blue-400 cursor-pointer">✎</span></td>
+                  </tr>
+                  <tr class="border-t bg-blue-100 dark:bg-blue-900">
+                    <td class="px-2 py-2"><input type="checkbox" checked class="accent-blue-600"></td>
+                    <td class="px-2 py-2">EKG (yurak tekshiruvi)</td>
+                    <td class="px-2 py-2 text-right">70 000 <span class="ml-2 text-blue-600 dark:text-blue-400 cursor-pointer">✎</span></td>
+                  </tr>
+                  <tr class="border-t dark:border-gray-600">
+                    <td class="px-2 py-2"><input type="checkbox" class="accent-blue-600"></td>
+                    <td class="px-2 py-2">PZR (PCR) testi</td>
+                    <td class="px-2 py-2 text-right">40 000 <span class="ml-2 text-blue-600 dark:text-blue-400 cursor-pointer">✎</span></td>
+                  </tr>
+                  <tr class="border-t dark:border-gray-600">
+                    <td class="px-2 py-2"><input type="checkbox" class="accent-blue-600"></td>
+                    <td class="px-2 py-2">UTT (UZI, ultratovush tekshiruvi)</td>
+                    <td class="px-2 py-2 text-right">30 000 <span class="ml-2 text-blue-600 dark:text-blue-400 cursor-pointer">✎</span></td>
+                  </tr>
+                  <tr class="border-t dark:border-gray-600">
+                    <td class="px-2 py-2"><input type="checkbox" class="accent-blue-600"></td>
+                    <td class="px-2 py-2">Biokimyoviy tahlil</td>
+                    <td class="px-2 py-2 text-right">70 000 <span class="ml-2 text-blue-600 dark:text-blue-400 cursor-pointer">✎</span></td>
+                  </tr>
+                  <tr class="border-t dark:border-gray-600">
+                    <td class="px-2 py-2"><input type="checkbox" class="accent-blue-600"></td>
+                    <td class="px-2 py-2">Terapevt konsultatsiyasi</td>
+                    <td class="px-2 py-2 text-right">40 000 <span class="ml-2 text-blue-600 dark:text-blue-400 cursor-pointer">✎</span></td>
+                  </tr>
+                  <tr class="border-t dark:border-gray-600">
+                    <td class="px-2 py-2"><input type="checkbox" class="accent-blue-600"></td>
+                    <td class="px-2 py-2">Pediatr konsultatsiyasi</td>
+                    <td class="px-2 py-2 text-right">50 000 <span class="ml-2 text-blue-600 dark:text-blue-400 cursor-pointer">✎</span></td>
+                  </tr>
+                  <tr class="border-t dark:border-gray-600">
+                    <td class="px-2 py-2"><input type="checkbox" class="accent-blue-600"></td>
+                    <td class="px-2 py-2">Ginekolog konsultatsiyasi</td>
+                    <td class="px-2 py-2 text-right">100 000 <span class="ml-2 text-blue-600 dark:text-blue-400 cursor-pointer">✎</span></td>
+                  </tr>
+                  <tr class="border-t border-b dark:border-gray-600">
+                    <td class="px-2 py-2"><input type="checkbox" class="accent-blue-600"></td>
+                    <td class="px-2 py-2">Urolog konsultatsiyasi</td>
+                    <td class="px-2 py-2 text-right">25 000 <span class="ml-2 text-blue-600 dark:text-blue-400 cursor-pointer">✎</span></td>
+                  </tr>                   
+                </tbody>
+              </table>
+            </div>
+          </div>
+      </section>
+      <!-- section4      -->
+      <section id="sms" class="mt-20 section-box  section-box hidden">
+        <div class="md:p-4 space-y-4 bg-white dark:bg-gray-900">
+          <div class="md:flex grid grid-cols-2 gap-2 md:px-0 px-2 justify-between items-center">
+              <input type="text" placeholder="Qidiruv" class="border-2 border-blue-500 rounded-lg pl-4 pr-10 py-2 outline-none focus:ring-blue-400 dark:bg-gray-800 dark:text-white">
+              <button class="bg-gradient-to-r from-blue-500 to-blue-800 dark:from-blue-600 dark:to-blue-900 text-white px-4 justify-center py-[10px] rounded-lg flex items-center">
+              Qong‘iroq qilish 
+            </button>
+          </div>
+        
+          <div class="md:border md:rounded-lg shadow-md overflow-hidden">
+            
+        
+            <div class="md:border md:rounded-lg shadow-md overflow-hidden">
+              <div class="flex items-center justify-between bg-blue-100 dark:bg-blue-800 px-4 py-2">
+                <div class="flex items-center gap-3">
+                  <input type="checkbox" />
+                  <span>✉️</span>
+                  <span>⋮</span>
+                </div>
+                <span class="text-sm text-blue-900 dark:text-white">30+ pochta</span>
+              </div>
+          
+              <div class="divide-y divide-blue-200 dark:divide-blue-700">
+                <div class="flex justify-between items-center px-4 py-2 hover:bg-blue-50 dark:hover:bg-blue-800 cursor-pointer">
+                  <div class="flex items-center gap-3">
+                    <input type="checkbox">
+                    <span>⭐</span>
+                    <span class="truncate w-52 text-sm dark:text-white"></span>
+                  </div>
+                  <div class="flex items-center gap-3 text-blue-600 dark:text-blue-300">
+                    <span>⬇️</span><span>🕓</span><span>🖵</span><span>🧾</span>
+                  </div>
+                </div>
+                
+                <div class="flex justify-between items-center px-4 py-2 bg-blue-50 dark:bg-blue-800 hover:bg-blue-100 dark:hover:bg-blue-700 cursor-pointer">
+                  <div class="flex items-center gap-3">
+                    <input type="checkbox">
+                    <span>⭐</span>
+                    <span class="truncate w-52 text-sm dark:text-white"></span>
+                  </div>
+                  <div class="flex items-center gap-3 text-blue-600 dark:text-blue-300">
+                    <span>⬇️</span><span>🕓</span><span>🖵</span><span>🧾</span>
+                  </div>
+                </div>
+                <div class="flex justify-between items-center px-4 py-2 hover:bg-blue-50 dark:hover:bg-blue-800 cursor-pointer">
+                  <div class="flex items-center gap-3">
+                    <input type="checkbox">
+                    <span>⭐</span>
+                    <span class="truncate w-52 text-sm dark:text-white"></span>
+                  </div>
+                  <div class="flex items-center gap-3 text-blue-600 dark:text-blue-300">
+                    <span>⬇️</span><span>🕓</span><span>🖵</span><span>🧾</span>
+                  </div>
+                </div>
+                <div class="flex justify-between items-center px-4 py-2 bg-blue-50 dark:bg-blue-800 hover:bg-blue-100 dark:hover:bg-blue-700 cursor-pointer">
+                  <div class="flex items-center gap-3">
+                    <input type="checkbox">
+                    <span>⭐</span>
+                    <span class="truncate w-52 text-sm dark:text-white"></span>
+                  </div>
+                  <div class="flex items-center gap-3 text-blue-600 dark:text-blue-300">
+                    <span>⬇️</span><span>🕓</span><span>🖵</span><span>🧾</span>
+                  </div>
+                </div>
+                <div class="flex justify-between items-center px-4 py-2 hover:bg-blue-50 dark:hover:bg-blue-800 cursor-pointer">
+                  <div class="flex items-center gap-3">
+                    <input type="checkbox">
+                    <span>⭐</span>
+                    <span class="truncate w-52 text-sm dark:text-white"></span>
+                  </div>
+                  <div class="flex items-center gap-3 text-blue-600 dark:text-blue-300">
+                    <span>⬇️</span><span>🕓</span><span>🖵</span><span>🧾</span>
+                  </div>
+                </div>
+                <div class="flex justify-between items-center px-4 py-2 bg-blue-50 dark:bg-blue-800 hover:bg-blue-100 dark:hover:bg-blue-700 cursor-pointer">
+                  <div class="flex items-center gap-3">
+                    <input type="checkbox">
+                    <span>⭐</span>
+                    <span class="truncate w-52 text-sm dark:text-white"></span>
+                  </div>
+                  <div class="flex items-center gap-3 text-blue-600 dark:text-blue-300">
+                    <span>⬇️</span><span>🕓</span><span>🖵</span><span>🧾</span>
+                  </div>
+                </div>
+          </div>
+        </div>
+        
+      </section>
+      <!-- section5 -->
+      <section id="users" class="section-box hidden dark:bg-gray-900 dark:text-white">
+        
+      </section>
+      <!-- section6 -->
+      <section id="reports" class="section-box hidden">
+        
+      </section>
+      <!-- section7 -->
+      <section id="calendar" class="md:p-4 mt-20 section-box hidden">
+        <div class="md:px-0 px-2 flex md:flex-row flex-col items-center gap-2 justify-between pb-2">
+      
+            <input type="text" placeholder="Qidiruv..." class="md:w-[300px] w-full sm:py-2 py-1 px-2 border-2 border-blue-600 rounded-lg px-2 py-1 outline-none bg-white dark:bg-gray-800 dark:text-white" />
+    
+          <div class="md:flex w-full md:px-0 p-2 grid grid-cols-2 items-center justify-end space-x-2">
+            <input type="date" class="w-full md:w-[300px] border border-gray-300 text-center rounded-md text-sm py-[6px] dark:bg-gray-800 dark:text-white dark:border-gray-600" placeholder="kun" />
+          
+            <button class="bg-gradient-to-r from-blue-500 to-blue-800 dark:from-blue-600 dark:to-blue-900 md:w-[300px] w-full text-white px-4 py-2 rounded-md md:text-lg text-sm">
+              Bemor qo‘shish
+            </button>
+          </div>
+        </div>
+    
+      <div class="text-xs ml-2 text-gray-700 dark:text-gray-300 mb-2 border border-gray-300 dark:border-gray-600 inline-block px-2 py-1 rounded-full">
+        1/1/2025
+      </div>
+    
+      <div class="overflow-x-auto md:border border-gray-300 dark:border-gray-600 md:rounded-md">
+        <table class="w-full text-sm text-center border-collapse">
+          <thead class="bg-purple-100 dark:bg-gray-700 text-gray-700 dark:text-white">
+            <tr>
+              <th class="border border-gray-300 dark:border-gray-600 p-2">SOAT</th>
+              <th class="border border-gray-300 dark:border-gray-600 p-2">DUSH</th>
+              <th class="border border-gray-300 dark:border-gray-600 p-2">SESH</th>
+              <th class="border border-gray-300 dark:border-gray-600 p-2">CHOR</th>
+              <th class="border border-gray-300 dark:border-gray-600 p-2">PAY</th>
+              <th class="border border-gray-300 dark:border-gray-600 p-2">JUM</th>
+              <th class="border border-gray-300 dark:border-gray-600 p-2">SHAN</th>
+              <th class="border border-gray-300 dark:border-gray-600 p-2">YAK</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="border border-gray-300 dark:border-gray-600 p-2">9.00</td>
+              <td class="border border-gray-300 dark:border-gray-600"></td>
+              <td class="border border-gray-300 dark:border-gray-600 bg-purple-100 dark:bg-gray-700"></td>
+              <td class="border border-gray-300 dark:border-gray-600"></td>
+              <td class="border border-gray-300 dark:border-gray-600"></td>
+              <td class="border border-gray-300 dark:border-gray-600"></td>
+              <td class="border border-gray-300 dark:border-gray-600"></td>
+              <td class="border border-gray-300 dark:border-gray-600"></td>
+            </tr>
+            <tr>
+              <td class="border border-gray-300 dark:border-gray-600 p-2">11.00</td>
+              <td class="border border-gray-300 dark:border-gray-600 bg-purple-100 dark:bg-gray-700"></td>
+              <td class="border border-gray-300 dark:border-gray-600"></td>
+              <td class="border border-gray-300 dark:border-gray-600"></td>
+              <td class="border border-gray-300 dark:border-gray-600 bg-purple-100 dark:bg-gray-700"></td>
+              <td class="border border-gray-300 dark:border-gray-600"></td>
+              <td class="border border-gray-300 dark:border-gray-600 bg-purple-100 dark:bg-gray-700"></td>
+              <td class="border border-gray-300 dark:border-gray-600"></td>
+            </tr>
+            <tr>
+              <td class="border border-gray-300 dark:border-gray-600 p-2">13.00</td>
+              <td class="border border-gray-300 dark:border-gray-600"></td>
+              <td class="border border-gray-300 dark:border-gray-600"></td>
+              <td class="border border-gray-300 dark:border-gray-600"></td>
+              <td class="border border-gray-300 dark:border-gray-600"></td>
+              <td class="border border-gray-300 dark:border-gray-600"></td>
+              <td class="border border-gray-300 dark:border-gray-600"></td>
+              <td class="border border-gray-300 dark:border-gray-600"></td>
+            </tr>
+            <tr>
+              <td class="border border-gray-300 dark:border-gray-600 p-2">15.00</td>
+              <td class="border border-gray-300 dark:border-gray-600"></td>
+              <td class="border border-gray-300 dark:border-gray-600 bg-purple-100 dark:bg-gray-700"></td>
+              <td class="border border-gray-300 dark:border-gray-600"></td>
+              <td class="border border-gray-300 dark:border-gray-600"></td>
+              <td class="border border-gray-300 dark:border-gray-600"></td>
+              <td class="border border-gray-300 dark:border-gray-600"></td>
+              <td class="border border-gray-300 dark:border-gray-600"></td>
+            </tr>
+            <tr>
+              <td class="border border-gray-300 dark:border-gray-600 p-2">17.00</td>
+              <td class="border border-gray-300 dark:border-gray-600"></td>
+              <td class="border border-gray-300 dark:border-gray-600"></td>
+              <td class="border border-gray-300 dark:border-gray-600"></td>
+              <td class="border border-gray-300 dark:border-gray-600 bg-purple-100 dark:bg-gray-700"></td>
+              <td class="border border-gray-300 dark:border-gray-600"></td>
+              <td class="border border-gray-300 dark:border-gray-600"></td>
+              <td class="border border-gray-300 dark:border-gray-600"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+    <!-- section8 -->
+    <section id="debtors" class="mt-20 md:mx-4 section-box hidden ">
+      <div class="bg-gradient-to-r from-blue-500 to-blue-800 dark:from-gray-800 dark:to-blue-900 dark:bg-gray-800 md:rounded-xl md:px-4 pt-6 shadow-xl">
+        <div class="flex flex-wrap justify-between items-center pb-3 mb-4 mx-2">
+          <h2 class="text-xl font-bold text-white">Qarzdorlar ro'yxati</h2>
+          <div class="flex flex-wrap gap-2 text-sm font-medium gap-4">
+            <button class="text-white hover:underline">Hammasi</button>
+            <button class="text-white hover:underline">Tolanganlar</button>
+            <button class="text-white hover:underline">Tolamaganlar</button>
+            <button class="text-white hover:underline">Qisman Tolaganlar</button>
+          </div>
+        </div>
+    
+        <div class="hidden md:grid  grid-cols-4 border-b font-semibold text-sm text-white px-2 py-1 gap-2">
+          <div>Ism/Familiya</div>
+          <div>Sana</div>
+          <div>Umumiy summa</div>
+          <div>Status</div>
+        </div>
+    
+        <div class="flex flex-col space-y-2 ">
+          <div class="grid grid-cols-4 items-center  px-4 py-2 border-b text-white gap-2">
+            <div class="font-medium">Laylo Ergasheva</div>
+            <div class="">12.03.23</div>
+            <div class="">200$</div>
+            <div>
+              <span class="bg-white text-blue-700 font-semibold text-xs rounded-full px-3 py-1">tolangan</span>
+            </div>
+          </div>
+    
+          <div class="grid grid-cols-4 items-center  px-4 py-2 border-b text-white gap-2">
+            <div class="font-medium">Shahzod Toirov</div>
+            <div>01.05.21</div>
+            <div>150$</div>
+            <div>
+              <span class="bg-blue-300 dark:bg-blue-800 font-semibold text-xs rounded-full px-3 py-1">tolamagan</span>
+            </div>
+          </div>
+    
+          <div class="grid grid-cols-4 items-center  px-4 py-2 border-b text-white gap-2">
+            <div class="font-medium">Malika Komilova</div>
+            <div>07.08.21</div>
+            <div>3.000$</div>
+            <div>
+              <span class="bg-white text-blue-700 font-semibold text-xs rounded-full px-3 py-1">tolangan</span>
+            </div>
+          </div>
+    
+          <div class="grid grid-cols-4 items-center  px-4 py-2 border-b text-white gap-2">
+            <div class="font-medium">Diyor Karimov</div>
+            <div>01.05.21</div>
+            <div>180$</div>
+            <div>
+              <span class="bg-white text-blue-700 font-semibold text-xs rounded-full px-3 py-1">tolamagan</span>
+            </div>
+          </div>
+    
+          <div class="grid grid-cols-4 items-center  px-4 py-2 border-b text-white gap-2">
+            <div class="font-medium">Islom Abdug‘afforov</div>
+            <div>01.05.21</div>
+            <div>50$</div>
+            <div>
+              <span class="bg-white text-blue-700 font-semibold text-xs rounded-full px-3 py-1">tolangan</span>
+            </div>
+          </div>
+    
+          <div class="grid grid-cols-4 items-center  px-4 py-2 border-b text-white gap-2">
+            <div class="font-medium">Javohir Qodirov</div>
+            <div>29.10.23</div>
+            <div>50$</div>
+            <div>
+              <span class="bg-white text-blue-700 font-semibold text-xs rounded-full px-3 py-1">tolangan</span>
+            </div>
+          </div>
+    
+          <div class="grid grid-cols-4 items-center  px-4 py-2 border-b text-white gap-2">
+            <div class="font-medium">Nodira Sattorova</div>
+            <div>01.05.21</div>
+            <div>200$</div>
+            <div>
+              <span class="bg-blue-300 dark:bg-blue-800 font-semibold text-xs rounded-full px-3 py-1">tolamagan</span>
+            </div>
+          </div>
+    
+          <div class="grid grid-cols-4 items-center  px-4 py-2 border-b text-white gap-2">
+            <div class="font-medium">Javohir Qodirov</div>
+            <div>03.03.19</div>
+            <div>150$</div>
+            <div>
+              <span class="bg-blue-300 dark:bg-blue-800 font-semibold text-xs rounded-full px-3 py-1">tolamagan</span>
+            </div>
+          </div>
+    
+          <div class="grid grid-cols-4 items-center  px-4 py-2 border-b text-white gap-2">
+            <div class="font-medium">Sardor Inoyatov</div>
+            <div>06.07.17</div>
+            <div>3.000$</div>
+            <div>
+              <span class="bg-white text-blue-700 font-semibold text-xs rounded-full px-3 py-1">tolangan</span>
+            </div>
+          </div>
+    
+          <div class="grid grid-cols-4 items-center  px-4 py-2 border-b text-white gap-2">
+            <div class="font-medium">Bobur Yusupov</div>
+            <div>17.11.20</div>
+            <div>180$</div>
+            <div>
+              <span class="bg-white text-blue-700 font-semibold text-xs rounded-full px-3 py-1">tolangan</span>
+            </div>
+          </div>
+    
+          <div class="grid grid-cols-4 items-center  px-4 py-2 border-b text-white gap-2">
+            <div class="font-medium">Javohir Qodirov</div>
+            <div>09.01.22</div>
+            <div>50$</div>
+            <div>
+              <span class="bg-white text-blue-700 font-semibold text-xs rounded-full px-3 py-1">tolangan</span>
+            </div>
+          </div>
+    
+          <div class="grid grid-cols-4 items-center  px-4 py-2 border-b text-white gap-2">
+            <div class="font-medium">Dilrabo Usmonova</div>
+            <div>18.01.20</div>
+            <div>200$</div>
+            <div>
+              <span class="bg-white text-blue-700 font-semibold text-xs rounded-full px-3 py-1">tolangan</span>
+            </div>
+          </div>
+    
+          <div class="grid grid-cols-4 items-center  px-4 py-2 border-b text-white gap-2">
+            <div class="font-medium">Nargiza Ro‘zmetova</div>
+            <div>25.06.22</div>
+            <div>150$</div>
+            <div>
+              <span class="bg-blue-300 dark:bg-blue-800 text-white font-semibold text-xs rounded-full px-3 py-1">tolamagan</span>
+            </div>
+          </div>
+    
+          <div class="grid grid-cols-4 items-center  px-4 py-2  text-white gap-2">
+            <div class="font-medium">Javohir Qodirov</div>
+            <div>30.02.20</div>
+            <div>150$</div>
+            <div>
+              <span class="bg-blue-300 dark:bg-blue-800 text-white font-semibold text-xs rounded-full px-3 py-1">tolamagan</span>
+            </div>
+          </div>
+    
+        </div>
+        <!-- statistika -->
+      
+    </section>
+    <!-- maxsus price  -->
+     <section id="maxsus" class="mt-20 section-box hidden">
+      <div class="flex flex-col items-center justify-center gap-4 mx-4">
+        <h1 class="text-center w-[300px] p-2 rounded-md border-2 border-blue-500 text-blue-500 font-bold">TISH DAVOLANISHI</h1>
+      <div class="w-full">
+          <div class="grid md:grid-cols-2 grid-cols-1 gap-8 w-full">
+            <div class="grid grid-cols-8 ">
+              <button class="border-x-2">18 <hr></button>
+              <button class="border-r-2">16 <hr></button>
+              <button class="border-r-2">15 <hr></button>
+              <button class="border-r-2">14 <hr></button>
+              <button class="border-r-2">13 <hr></button>
+              <button class="border-r-2">17 <hr></button>
+              <button class="border-r-2">12 <hr></button>
+              <button>11 <hr></button>
+              <button class="border-x-2">48</button>
+              <button class="border-r-2">47</button>
+              <button class="border-r-2">46</button>
+              <button class="border-r-2">45</button>
+              <button class="border-r-2">44</button>
+              <button class="border-r-2">43</button>
+              <button class="border-r-2">42</button>
+              <button>41</button>
+            </div>
+            
+            <div class="grid grid-cols-8">
+              <button class="border-r-2">21 <hr></button>
+              <button class="border-r-2">22 <hr></button>
+              <button class="border-r-2">23<hr></button>
+              <button class="border-r-2">24 <hr></button>
+              <button class="border-r-2">25 <hr></button>
+              <button class="border-r-2">26 <hr></button>
+              <button class="border-r-2">27 <hr></button>
+              <button class="border-r-2">28 <hr></button>
+              <button class="border-r-2">31</button>
+              <button class="border-r-2">32</button>
+              <button class="border-r-2">33</button>
+              <button class="border-r-2">34</button>
+              <button class="border-r-2">35</button>
+              <button class="border-r-2">36</button>
+              <button class="border-r-2">37</button>
+              <button class="border-r-2">38</button>
+            </div>
+          </div>
+      </div>
+      <div class="flex items-start gap-4">
+        <div>
+          <span>tish oldirish </span>
+          <span class="px-2 rounded-full bg-red-600 text-red-600">.</span>
+        </div>
+        <div>
+          <span>plomba</span>
+          <span class="px-2 rounded-full bg-blue-600 text-blue-600">.</span>
+        </div>
+        <div>
+          <span>koronka</span>
+          <span class="px-2 rounded-full bg-green-600 text-green-600">.</span>
+        </div>
+      </div>
+      <div class="grid md:grid-cols-2 grid-cols-1 gap-4 w-full py-4">
+        <div class="flex flex-col border-2 border-blue-500 w-full">
+          <div>
+            <h1 class="text-center border-b-2 border-blue-500 p-4 text-blue-500 font-bold">MUOLAJALAR NARXI</h1>
+          </div>
+          <div class="grid grid-cols-3 gap-4">
+            <div class="flex flex-col bg-blue-700 text-white text-center gap-2 p-2">
+              <span>47</span>
+              <span>14</span>
+              <span>43</span>
+              <span>22</span>
+              <span>33</span>
+            </div>
+            <div class="flex text-center text-blue-500 flex-col p-2 gap-2">
+              <span>Tish oldirish</span>
+              <span>Plomba</span>
+              <span>Koronka</span>
+              <span>Plomba</span>
+              <span>Plomba</span>
+            </div>
+            <div class="flex flex-col p-2 gap-2 bg-blue-300 dark:bg-gray-800">
+              <span>.</span>
+              <span>.</span>
+              <span>.</span>
+              <span>.</span>
+              <span>.</span>
+            </div>
+          </div>
+        </div>
+        <div class="w-full border-2 h-[60px] border-blue-500 grid grid-cols-2">
+          <span class="font-bold flex items-center justify-center">Umumiy narx:</span>
+          <span class="bg-blue-700"></span>
+        </div>
+      </div> 
+      </div>
+     </section>
+    <!-- anketa -->
+     <section  id="anketa" class="mt-28 section-box hidden mx-4 mb-8">
+      <div class="flex flex-col gap-20 font-bold">
+        <div class="gap-4 flex lg:flex-row flex-col items-center justify-between ">
+          <div class="text-blue-800 border-b-2 border-blue-500 w-[100px]">Tish Oldirish</div>
+          <div class="grid md:grid-cols-2 grid-cols-1 gap-8 w-full">
+            <div class="grid grid-cols-8 ">
+              <button class="border-x-2">18 <hr></button>
+              <button class="border-r-2">16 <hr></button>
+              <button class="border-r-2">15 <hr></button>
+              <button class="border-r-2">14 <hr></button>
+              <button class="border-r-2">13 <hr></button>
+              <button class="border-r-2">17 <hr></button>
+              <button class="border-r-2">12 <hr></button>
+              <button>11 <hr></button>
+              <button class="border-x-2">48</button>
+              <button class="border-r-2">47</button>
+              <button class="border-r-2">46</button>
+              <button class="border-r-2">45</button>
+              <button class="border-r-2">44</button>
+              <button class="border-r-2">43</button>
+              <button class="border-r-2">42</button>
+              <button>41</button>
+            </div>
+            
+            <div class="grid grid-cols-8">
+              <button class="border-r-2">21 <hr></button>
+              <button class="border-r-2">22 <hr></button>
+              <button class="border-r-2">23<hr></button>
+              <button class="border-r-2">24 <hr></button>
+              <button class="border-r-2">25 <hr></button>
+              <button class="border-r-2">26 <hr></button>
+              <button class="border-r-2">27 <hr></button>
+              <button class="border-r-2">28 <hr></button>
+              <button class="border-r-2">31</button>
+              <button class="border-r-2">32</button>
+              <button class="border-r-2">33</button>
+              <button class="border-r-2">34</button>
+              <button class="border-r-2">35</button>
+              <button class="border-r-2">36</button>
+              <button class="border-r-2">37</button>
+              <button class="border-r-2">38</button>
+            </div>
+          </div>
+        </div>
+        <div class="gap-4 flex lg:flex-row flex-col items-center justify-between ">
+          <div class="text-blue-800 border-b-2 border-blue-500 w-[100px] text-center">Plomba</div>
+          <div class="grid md:grid-cols-2 grid-cools-1 gap-8 w-full">
+            <div class="grid grid-cols-8 ">
+              <button class="border-x-2">18 <hr></button>
+              <button class="border-r-2">16 <hr></button>
+              <button class="border-r-2">15 <hr></button>
+              <button class="border-r-2">14 <hr></button>
+              <button class="border-r-2">13 <hr></button>
+              <button class="border-r-2">17 <hr></button>
+              <button class="border-r-2">12 <hr></button>
+              <button>11 <hr></button>
+              <button class="border-x-2">48</button>
+              <button class="border-r-2">47</button>
+              <button class="border-r-2">46</button>
+              <button class="border-r-2">45</button>
+              <button class="border-r-2">44</button>
+              <button class="border-r-2">43</button>
+              <button class="border-r-2">42</button>
+              <button>41</button>
+            </div>
+            
+            <div class="grid grid-cols-8">
+              <button class="border-r-2">21 <hr></button>
+              <button class="border-r-2">22 <hr></button>
+              <button class="border-r-2">23<hr></button>
+              <button class="border-r-2">24 <hr></button>
+              <button class="border-r-2">25 <hr></button>
+              <button class="border-r-2">26 <hr></button>
+              <button class="border-r-2">27 <hr></button>
+              <button class="border-r-2">28 <hr></button>
+              <button class="border-r-2">31</button>
+              <button class="border-r-2">32</button>
+              <button class="border-r-2">33</button>
+              <button class="border-r-2">34</button>
+              <button class="border-r-2">35</button>
+              <button class="border-r-2">36</button>
+              <button class="border-r-2">37</button>
+              <button class="border-r-2">38</button>
+            </div>
+          </div>
+        </div>
+        <div class="gap-4 flex lg:flex-row flex-col items-center justify-between ">
+          <div class="text-blue-800 border-b-2 border-blue-500 w-[100px] text-center">Koronka</div>
+          <div class="grid md:grid-cols-2 grid-cols-1 gap-8 w-full">
+            <div class="grid grid-cols-8 ">
+              <button class="border-x-2">18 <hr></button>
+              <button class="border-r-2">16 <hr></button>
+              <button class="border-r-2">15 <hr></button>
+              <button class="border-r-2">14 <hr></button>
+              <button class="border-r-2">13 <hr></button>
+              <button class="border-r-2">17 <hr></button>
+              <button class="border-r-2">12 <hr></button>
+              <button>11 <hr></button>
+              <button class="border-x-2">48</button>
+              <button class="border-r-2">47</button>
+              <button class="border-r-2">46</button>
+              <button class="border-r-2">45</button>
+              <button class="border-r-2">44</button>
+              <button class="border-r-2">43</button>
+              <button class="border-r-2">42</button>
+              <button>41</button>
+            </div>
+            
+            <div class="grid grid-cols-8">
+              <button class="border-r-2">21 <hr></button>
+              <button class="border-r-2">22 <hr></button>
+              <button class="border-r-2">23<hr></button>
+              <button class="border-r-2">24 <hr></button>
+              <button class="border-r-2">25 <hr></button>
+              <button class="border-r-2">26 <hr></button>
+              <button class="border-r-2">27 <hr></button>
+              <button class="border-r-2">28 <hr></button>
+              <button class="border-r-2">31</button>
+              <button class="border-r-2">32</button>
+              <button class="border-r-2">33</button>
+              <button class="border-r-2">34</button>
+              <button class="border-r-2">35</button>
+              <button class="border-r-2">36</button>
+              <button class="border-r-2">37</button>
+              <button class="border-r-2">38</button>
+            </div>
+          </div>
+        </div>
+      </div>     
+     </section>
+    </main>
+  
+  <script src="script.js"></script>
+</body>
+</html>
