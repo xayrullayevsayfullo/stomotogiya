@@ -49,7 +49,8 @@ tailwind.config = {
       calendar: "Kalendar",
       debtors: "Qarzdorlar",
       anketa:"Anketa",
-      maxsus:"Maxsus price"
+      maxsus:"Maxsus price",
+      ozgartirish:"O'zgartirish"
     };
   
     const sectionTitle = document.getElementById("sectionTitle");
